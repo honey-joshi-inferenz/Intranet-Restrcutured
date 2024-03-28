@@ -1,0 +1,43 @@
+.requestPostDetails h4 {
+  color: #042049;
+}
+.requestpostImgDiv img {
+  border-radius: 11px;
+}
+.requestAuthorDetails span {
+  font-size: 13px;
+}
+.requestAuthorDetails h5 {
+  color: #117ae0;
+  font-weight: bold;
+}
+.requestPostDetails h5 {
+  color: #0c487a;
+  font-weight: bold;
+}
+.requestPostDetails header {
+  color: #042049;
+  font-weight: bold;
+}
+.requestPostDetails h3 {
+  color: #114fff;
+  font-weight: bold;
+}
+.requestPostDetails p {
+  text-align: justify;
+}
+.requestPostCallBtn {
+  background-color: #117ae0 !important;
+  color: white !important;
+}
+@media only screen and (max-width: 768px) {
+  .requestPostDetails h3 {
+    font-size: 18px !important;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .intraSellBanner h4 {
+    font-size: 18px !important;
+  }
+}

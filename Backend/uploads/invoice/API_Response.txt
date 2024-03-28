@@ -1,0 +1,28 @@
+status: true,
+code: 200,
+message: "Data Retrieved Successfully.",
+
+status: false,
+code: 404,
+message: "Data Retrieved Successfully.",
+
+return res.status(400).json({
+        status: false,
+        code: 400,
+        message: "Prameters Missing!!",
+        data: errors.array(),
+      });
+
+
+return res.status(500).json({
+      status: false,
+      code: 500,
+      message: error.message,
+    });
+
+
+100 - 599
+
+1. Already Exist : 403
+2. Database Error : 400
+3. Internal Server : 500

@@ -1,0 +1,49 @@
+.empDetails span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4e5f77;
+}
+.empDetailsIcon {
+  color: #4e5f77;
+}
+.adminEditTabpanel {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+.adminEditRequestEmpData {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+.empExpenseOverview {
+  font-size: 14px;
+  font-weight: 600;
+  color: #a1a5b7;
+}
+.expenseTitle {
+  color: #042049 !important;
+}
+.empStatusOverview {
+  border-style: dashed !important;
+  border-color: #e4e6ef;
+  border-radius: 11px;
+  border: 1px solid #eff2f5;
+  height: 100%;
+}
+
+.lastUpdate span {
+  font-size: 14px;
+  color: #a1a5b7;
+}
+.lastUpdate h6 {
+  color: #042049;
+  font-size: 15px !important;
+}
+.paymentDoneBtn {
+  color: #5ae4a7 !important;
+  border-color: #5ae4a7 !important;
+}
+@media only screen and (max-width: 600px) {
+  .empData img {
+    height: 80px;
+  }
+}

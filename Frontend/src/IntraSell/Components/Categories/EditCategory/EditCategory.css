@@ -1,0 +1,18 @@
+.subcategoryBtn {
+  color: #009ef7;
+  border-color: #f1faff !important;
+  background-color: #f1faff !important;
+  border: none;
+  border-radius: 5px;
+  height: 2.5rem;
+  width: 15rem;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: capitalize !important;
+}
+
+.subCategoryCancelButton {
+  color: #f1416c !important;
+  border-color: #fff5f8 !important;
+  background-color: #fff5f8 !important;
+}

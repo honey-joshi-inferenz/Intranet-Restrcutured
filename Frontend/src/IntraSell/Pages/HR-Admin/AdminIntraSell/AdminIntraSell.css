@@ -1,0 +1,61 @@
+.intraSellBanner {
+  border-radius: 11px;
+  background-color: #ffc400;
+  text-align: justify;
+}
+.createAPostBtn {
+  width: 25% !important;
+  font-size: 17px !important;
+}
+
+.allpostImgDiv img {
+  border-radius: 11px;
+}
+.intraSellAuthorDetails span {
+  font-size: 13px;
+}
+.intraSellAuthorDetails h5 {
+  color: #117ae0;
+  font-weight: bold;
+}
+.intraSellPostDetails h5 {
+  color: #0c487a;
+  font-weight: bold;
+}
+.intraSellPostDetails header {
+  color: #042049;
+  font-weight: bold;
+}
+.intraSellPostDetails h3 {
+  color: #114fff;
+  font-weight: bold;
+}
+.intraSellPostDetails p {
+  text-align: justify;
+  font-size: 14px;
+}
+.allPostCallBtn {
+  background-color: #117ae0 !important;
+  color: white !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .createAPostBtn {
+    width: 40% !important;
+  }
+  .intraSellPostDetails h3 {
+    font-size: 18px !important;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .createAPostBtn {
+    width: 70% !important;
+  }
+  .createAPostImg img {
+    width: 100% !important;
+  }
+  .intraSellBanner h4 {
+    font-size: 18px !important;
+  }
+}

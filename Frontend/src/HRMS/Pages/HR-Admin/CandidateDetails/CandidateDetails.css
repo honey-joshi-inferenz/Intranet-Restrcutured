@@ -1,0 +1,12 @@
+.historyHeader {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4e5f77;
+}
+.historyTitle {
+  color: #042049 !important;
+}
+.noLinkBtn:disabled {
+  cursor: not-allowed !important;
+  pointer-events: all !important;
+}

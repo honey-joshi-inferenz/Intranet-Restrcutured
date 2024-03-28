@@ -1,0 +1,9 @@
+.multiImagesDiv {
+  border: 1px dotted #009ef7;
+  background-color: #f1faff;
+  border-radius: 0.475rem;
+  cursor: pointer;
+}
+.multiImagesDiv img {
+  height: 5rem;
+}

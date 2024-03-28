@@ -1,0 +1,30 @@
+.candidateOverview {
+  font-size: 14px;
+  font-weight: 600;
+  color: #a1a5b7;
+}
+.candidateTitle {
+  color: #042049 !important;
+}
+.editInterviewLeftCard {
+  height: 100%;
+}
+.interviewFeedbackCard {
+  border-color: #e4e6ef;
+  border-radius: 11px;
+  border: 1px solid #eff2f5;
+}
+.interviewFeedbackCard {
+  font-size: 14px;
+  font-weight: 600;
+  color: #a1a5b7;
+}
+.interviewTitle {
+  color: #042049 !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .editInterviewLeftCard {
+    max-height: none !important;
+  }
+}

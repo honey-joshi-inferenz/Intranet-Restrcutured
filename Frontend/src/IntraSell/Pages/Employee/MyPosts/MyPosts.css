@@ -1,0 +1,61 @@
+.intrasellNavigate {
+  border-radius: 11px;
+  background: #ffc400;
+  height: 100%;
+}
+.myPostImage {
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.intraSellBanner {
+  border-radius: 11px;
+  background-color: #ffc400;
+  text-align: justify;
+}
+.createAPostBtn {
+  width: 25% !important;
+  font-size: 17px !important;
+}
+/* .myPostsBannerImg img {
+  width: 250px;
+  height: 250px;
+} */
+
+/* .myPostImage img {
+  width: 90%;
+} */
+.myPosts-newPost {
+  background: url("../../../../Assets/Backgrounds/Combined\ banner.svg")
+    no-repeat;
+  background-color: white;
+  border-radius: 11px;
+  background-size: cover;
+}
+.myPosts-newPost img {
+  border-radius: 11px;
+}
+.myPostnameTag {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 5px;
+}
+.myPosts-newPost h3 {
+  color: #ffc400;
+}
+.myPosts-newPost p {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 600px) {
+  .myPostImage {
+    top: -20px !important;
+  }
+  .myPostImage img {
+    width: 55% !important;
+  }
+}

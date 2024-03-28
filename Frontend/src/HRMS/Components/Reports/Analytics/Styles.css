@@ -1,0 +1,15 @@
+.upcomingJoiners {
+  max-height: 500px;
+  overflow: auto;
+}
+.upcomingJoiners::-webkit-scrollbar {
+  width: 0.3rem;
+}
+.upcomingJoiners::-webkit-scrollbar-track {
+  background-color: white;
+  border-radius: 10px;
+}
+.upcomingJoiners::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #dfdcdc;
+}

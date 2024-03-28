@@ -1,0 +1,41 @@
+.homeLeftCard span {
+  color: #09449e;
+  font-size: 60px;
+  font-weight: 700;
+}
+.homeLeftCard p {
+  font-size: 20px;
+  font-weight: 400;
+  color: #4e5f77;
+}
+.homeHeaderLogo {
+  width: 8rem;
+}
+.headerLine {
+  width: 100%;
+  height: 6px;
+  background: url("../../Assets/Images/Rectangle\ 13.svg") no-repeat;
+  background-size: cover;
+}
+
+@media only screen and (max-width: 1024px) {
+  .homeHeaderLogo {
+    width: 4.5rem;
+  }
+  .homeLeftCard span {
+    font-size: 40px;
+  }
+  .homeLeftCard p {
+    font-size: 14px;
+  }
+ 
+}
+@media only screen and (max-width: 600px) {
+  .welcomeTag {
+    position: relative !important;
+  }
+
+  .homeLeftCard {
+    box-shadow: none !important;
+  }
+}

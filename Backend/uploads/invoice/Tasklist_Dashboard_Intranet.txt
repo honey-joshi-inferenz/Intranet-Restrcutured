@@ -1,0 +1,20 @@
+Dashboard : 
+
+1. month wise - status wise reports.
+2. quarterly reports
+3. count of profiles based on HR team
+4. source of applicant wise report
+5. powerBI project deployment. 
+
+
+Backlog task : 
+1. average time of candidate join ()
+
+----------------------------------------------------
+
+Intranet Changes : 
+
+1. Merge Referral table and home page table		:	DONE
+2. remove serial number column from table		: 	DONE
+3. dashboard access - admin/HR 				:	DONE
+4. HR metrics visible false.					:	WIP

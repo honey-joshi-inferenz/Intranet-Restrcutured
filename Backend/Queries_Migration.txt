@@ -1,0 +1,41 @@
+1. dropdown_values
+INSERT INTO inferenz_intranet.dropdown_values (id, name, value, drp_name)
+SELECT id, name, value, drp_name
+FROM hrms_recruitment.dropdown_values;
+
+2. users
+INSERT INTO inferenz_intranet.users (id, uuid, name, email, contact, role, password, visible)
+SELECT id, uuid, name, email, contact, role, password, visible
+FROM hrms_recruitment.users;
+
+3. interviewer_candidate 
+INSERT INTO inferenz_intranet.interviewer_candidate
+SELECT *
+FROM hrms_recruitment.interviewer_candidate;
+
+4. interview_history
+INSERT INTO inferenz_intranet.interview_history
+SELECT *
+FROM hrms_recruitment.interview_history;
+
+5. reimburse_transactions
+INSERT INTO inferenz_intranet.reimburse_transactions (transaction_id, email, mode_id, paid_amount, purpose_of_expenditure, expenditure_category, date_of_expense, invoice, hr_approved_by, hr_approved_date, admin_approved_by, admin_approved_date, last_updated_date, employee_status, status, hr_reason_reject, hr_reason_onhold, admin_reason_reject, admin_reason_onhold, final_status, month_of_exps, year_of_exps, initiate_date, visible)
+SELECT transaction_id, email, mode_id, paid_amount, purpose_of_expenditure, expenditure_category, date_of_expense, invoice, hr_approved_by, hr_approved_date, admin_approved_by, admin_approved_date, last_updated_date, employee_status, status, hr_reason_reject, hr_reason_onhold, admin_reason_reject, admin_reason_onhold, final_status, month_of_exps, year_of_exps, initiate_date, visible
+FROM hrms_reimbursement.transactions;
+
+-> Add Cash and Online options in dropdown_values table.
+
+-> Update mode_id as per dropdown_values table id and update account_id based on email
+For Cash   : UPDATE reimburse_transactions SET mode_id = 62 WHERE mode_id = 1
+For Online : UPDATE reimburse_transactions SET mode_id = 63 WHERE mode_id = 2
+
+UPDATE reimburse_transactions AS t
+INNER JOIN users AS u ON t.email = u.email
+SET t.account_id = u.id;
+
+
+6. product_categories
+
+7. product_subcategories
+
+7. product_details

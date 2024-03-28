@@ -1,0 +1,81 @@
+.userProfileInput {
+  border: none !important;
+  background-color: transparent !important;
+  border-bottom: 1px solid #e4e6ef !important;
+}
+.userProfileInputGrp {
+  border: none !important;
+  background-color: transparent !important;
+  border-bottom: 1px solid #e4e6ef !important;
+  cursor: pointer;
+}
+.userProfileContact .flag-dropdown {
+  border: none !important;
+  background-color: transparent !important;
+  border-bottom: 1px solid #e4e6ef !important;
+}
+.editMode {
+  background-color: #fff !important;
+}
+.userProfileBgData {
+  position: absolute;
+  bottom: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.profileEllipse {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 5px solid #5ae4a7;
+  background-color: #fff;
+  overflow: hidden;
+}
+.userProfileBgData span {
+  font-size: 18px;
+  font-weight: 500 !important;
+}
+@media only screen and (max-width: 768px) {
+  .useProfileForm {
+    width: 100% !important;
+  }
+  .profileEllipse {
+    width: 50px;
+    height: 50px;
+  }
+  .profileEllipse img {
+    height: 40px;
+  }
+  .userProfileBgData {
+    bottom: 20%;
+  }
+
+  .userProfileBgData h4 {
+    font-size: 13px;
+  }
+  .userProfileBgData span {
+    font-size: 13px;
+  }
+}
+@media only screen and (max-width: 1500px) {
+  .userProfileData {
+    background-size: contain;
+  }
+}
+@media only screen and (min-width: 700px) and (max-width: 1000px) {
+  .userProfileBgData {
+    bottom: 23%;
+  }
+  .profileEllipse {
+    height: 80px;
+    width: 80px;
+  }
+  .profileEllipse img {
+    height: 100%;
+  }
+}
+@media only screen and (min-width: 1000px) and (max-width: 1200px) {
+  .userProfileBgData {
+    bottom: 25%;
+  }
+}

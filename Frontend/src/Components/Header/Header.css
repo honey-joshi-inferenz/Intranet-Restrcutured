@@ -1,0 +1,41 @@
+.header {
+  width: 100%;
+  position: fixed;
+  height: 60px;
+  z-index: 999;
+  top: 0;
+  right: 0;
+  left: 0;
+  border-bottom: 1px solid rgba(217, 219, 228, 0.5);
+  color: #99a1b7;
+  background-color: #ffffff;
+}
+.headerLogo {
+  height: 1.8rem;
+}
+.userProfile span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #042049;
+}
+.userProfile p {
+  font-size: 13px;
+  color: #4e5f77;
+}
+.header span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #042049;
+}
+
+.userAvatar {
+  border-radius: 0.42rem !important;
+  font-size: 14px !important;
+  background-color: #f3f3f3 !important;
+  color: #042049 !important;
+}
+/* @media only screen and (max-width: 768px) {
+    .header {
+      display: none !important;
+    }
+  } */

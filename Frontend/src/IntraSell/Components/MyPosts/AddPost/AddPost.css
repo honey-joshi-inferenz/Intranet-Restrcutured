@@ -1,0 +1,60 @@
+.multiImagesDiv {
+  border: 1px dotted #009ef7;
+  background-color: #f1faff;
+  border-radius: 0.475rem;
+  cursor: pointer;
+}
+.multiImagesDiv img {
+  height: 5rem;
+}
+
+.thumbnailImg {
+  position: relative;
+  height: 10rem;
+  width: 8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: 0 0.1rem 1rem 0.25rem rgba(0, 0, 0, 0.05) !important;
+}
+.imagePencil {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0.1rem 1rem 0.25rem rgba(0, 0, 0, 0.05) !important;
+  left: 100%;
+  top: 0;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+.previewImg {
+  flex-shrink: 0;
+  -webkit-flex-shrink: 0;
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: cover;
+  border-radius: 5px;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+}
+.pencil {
+  color: #a1a5b7;
+}
+.pencil:hover {
+  color: #009ef7 !important;
+}
+@media only screen and (max-width: 1024px) {
+  .thumbnailImg {
+    width: 10rem !important;
+  }
+}
+@media only screen and (min-width: 2560px) {
+  .thumbnailImg {
+    width: 10rem !important;
+  }
+}

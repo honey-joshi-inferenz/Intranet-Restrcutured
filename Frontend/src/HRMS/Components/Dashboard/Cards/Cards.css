@@ -1,0 +1,82 @@
+.recruiterCard {
+  height: 224px !important;
+  border-radius: 15px;
+  color: #fff;
+  position: relative;
+  opacity: 1;
+  cursor: pointer;
+}
+.dashboardCarousel {
+  height: 100%;
+  top: -30px !important;
+  position: absolute;
+}
+.card1 {
+  background: #0c487a;
+}
+.card1Arrow {
+  color: #0c487a;
+  font-size: 28px;
+}
+.card2 {
+  background: #117ae0;
+}
+.card2Arrow {
+  color: #117ae0;
+  font-size: 28px;
+}
+.card3 {
+  background: #09449e;
+}
+.card3Arrow {
+  color: #09449e;
+  font-size: 28px;
+}
+.card4 {
+  background: #042049;
+}
+.card4Arrow {
+  color: #042049;
+  font-size: 28px;
+}
+.card5 {
+  background: #114fff;
+}
+.card5Arrow {
+  color: #114fff;
+  font-size: 28px;
+}
+.card6 {
+  background: #2b6eb4;
+}
+.card6Arrow {
+  color: #2b6eb4;
+  font-size: 28px;
+}
+.card7 {
+  background: #4e5f77;
+}
+.card7Arrow {
+  color: #4e5f77;
+  font-size: 28px;
+}
+.recruiterDashboardImg {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.recruiterCardData {
+  margin-top: 6rem;
+  cursor: pointer;
+}
+.recruiterCardData span {
+  font-size: 20px;
+  text-transform: capitalize;
+}
+
+@media only screen and (max-width: 768px) {
+  .recruiterDashboard {
+    margin-top: 3rem !important;
+  }
+}
