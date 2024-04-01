@@ -148,14 +148,20 @@ export const EditInterview = () => {
                           <span className="col-md-5 candidateTitle">
                             Resume / CV
                           </span>
-                          <a
-                            href={data.candidate_resume}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="col-md-7"
-                          >
-                            <Button>Click to view</Button>
-                          </a>
+                          {data.candidate_resume === null ||
+                          data.candidate_resume === "null" ||
+                          data.candidate_resume === "" ? (
+                            <Button disabled>Click to view</Button>
+                          ) : (
+                            <a
+                              href={data.candidate_resume}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="col-md-7"
+                            >
+                              <Button>Click to view</Button>
+                            </a>
+                          )}
                         </div>
                       </div>
                     )}

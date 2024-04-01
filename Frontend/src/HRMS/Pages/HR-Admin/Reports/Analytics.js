@@ -69,7 +69,7 @@ export const Analytics = () => {
       await axios
         .get(
           BASE_URL +
-            `hrmetrics/getHeadcountsByFinalStatus?duration=${durations.finalStatus}&values=${queryParams.values}&dateRange=${queryParams.dateRange}`,
+            `hrmetrics/getHeadcountsByFinalStatus?values=${queryParams.values}&dateRange=${queryParams.dateRange}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -93,7 +93,7 @@ export const Analytics = () => {
       await axios
         .get(
           BASE_URL +
-            `hrmetrics/getHeadcountsByHrStatus?duration=${durations.hrStatus}&values=${queryParams.values}&dateRange=${queryParams.dateRange}`,
+            `hrmetrics/getHeadcountsByHrStatus?values=${queryParams.values}&dateRange=${queryParams.dateRange}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -117,7 +117,7 @@ export const Analytics = () => {
       await axios
         .get(
           BASE_URL +
-            `hrmetrics/getHeadcountsByInterviewRounds?duration=${durations.interviewRound}&values=${queryParams.values}&dateRange=${queryParams.dateRange}`,
+            `hrmetrics/getHeadcountsByInterviewRounds?values=${queryParams.values}&dateRange=${queryParams.dateRange}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -141,7 +141,7 @@ export const Analytics = () => {
       await axios
         .get(
           BASE_URL +
-            `hrmetrics/getHeadcountsByOwner?duration=${durations.owner}&values=${queryParams.values}&dateRange=${queryParams.dateRange}`,
+            `hrmetrics/getHeadcountsByOwner?values=${queryParams.values}&dateRange=${queryParams.dateRange}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -165,7 +165,7 @@ export const Analytics = () => {
       await axios
         .get(
           BASE_URL +
-            `hrmetrics/getHeadcountsByPosition?duration=${durations.position}&values=${queryParams.values}&dateRange=${queryParams.dateRange}`,
+            `hrmetrics/getHeadcountsByPosition?values=${queryParams.values}&dateRange=${queryParams.dateRange}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -189,7 +189,7 @@ export const Analytics = () => {
       await axios
         .get(
           BASE_URL +
-            `hrmetrics/getHeadcountsByResumeSource?duration=${durations.resumeSource}&values=${queryParams.values}&dateRange=${queryParams.dateRange}`,
+            `hrmetrics/getHeadcountsByResumeSource?values=${queryParams.values}&dateRange=${queryParams.dateRange}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

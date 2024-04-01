@@ -37,6 +37,19 @@ const imageUpload = multer({
   storage: imageStorage,
 });
 
+var mailTransporter = nodemailer.createTransport({
+  host: "outlook.office365.com",
+  port: 587,
+  secure: false,
+  pool: true,
+  maxConnections: 3,
+
+  auth: {
+    user: "hr@inferenz.ai",
+    pass: "rxsctfysbcqbpyjc",
+  },
+});
+
 const modifyRequestBody = (requestData) => {
   var parsedData = requestData.data
     ? JSON.parse(requestData.data)
@@ -111,13 +124,12 @@ function sendReimburseEmail(
 }
 
 function sendAdminReimburseEmail(subject, msgBody, userEmail) {
-  // var mailList = ['honey.joshi@inferenz.ai']
   var transporter = nodemailer.createTransport({
-    // service: 'office',
     host: "outlook.office365.com",
     port: 587,
     secure: false,
-    // tls: { rejectUnauthorized: false },
+    pool: true,
+    maxConnections: 1,
 
     auth: {
       user: "hr@inferenz.ai",
@@ -650,6 +662,25 @@ const getApprovedRequests = async (req, res) => {
 
     if (requests.length > 0) {
       for (let i = 0; i < requests.length; i++) {
+        if (
+          (requests[i].status == "Approved" ||
+            requests[i].status == "On Hold") &&
+          (requests[i].final_status == "Pending" ||
+            requests[i].final_status == "On Hold" ||
+            requests[i].final_status == "Approved")
+        ) {
+          requests[i].employee_status = "In Progress";
+        } else if (
+          requests[i].status == "Approved" &&
+          requests[i].final_status == "Payment Done"
+        ) {
+          requests[i].employee_status = "Completed";
+        } else if (
+          requests[i].status == "Rejected" ||
+          requests[i].final_status == "Rejected"
+        ) {
+          requests[i].employee_status = "Rejected";
+        }
         requests[i] = { serialNumber: i + 1, ...requests[i].dataValues };
       }
       return res.status(200).json({
@@ -1165,6 +1196,145 @@ const updateStatusByAdmin = async (req, res) => {
   }
 };
 
+//update status of bulk approved requests from admin panel
+const updateBulkRequestsByAdmin = async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        status: false,
+        code: 400,
+        message: "prameters missing!!",
+        data: errors.array(),
+      });
+    } else {
+      const { transactionIDs } = req.body;
+      var subject, msgBody, userEmail;
+      var currentDate = new Date().toISOString().slice(0, 23).replace("T", " ");
+      req.body.final_status = "Payment Done";
+      req.body.last_updated_date = currentDate;
+      req.body.admin_approved_date = currentDate;
+
+      // It will loop all the transactionIDs
+      for (let i = 0; i < transactionIDs.length; i++) {
+        // It will update particular transaction status
+        await models.reimburseTransactions.update(req.body, {
+          where: {
+            transaction_id: transactionIDs[i],
+          },
+        });
+
+        // It will find user & payment mode related details associated with transaction
+        var transaction = await models.reimburseTransactions.findOne({
+          where: { transaction_id: transactionIDs[i] },
+          attributes: {
+            include: [
+              [sequelize.col("user.name"), "name"],
+              [sequelize.col("user.email"), "email"],
+              [sequelize.col("user.emp_code"), "emp_code"],
+              [sequelize.col("user.dept_name"), "dept_name"],
+              [sequelize.col("paymentModes.name"), "paymentMode"],
+            ],
+          },
+          include: [
+            {
+              model: models.dropdownValues,
+              as: "paymentModes",
+              required: true,
+              attributes: [],
+            },
+            {
+              model: models.users,
+              as: "user",
+              required: true,
+              attributes: [],
+            },
+          ],
+        });
+
+        var transactionDetails = transaction.dataValues;
+
+        // It will trigger email to particular candidate & HR to give a confirmation regarding payment done of their reimbursement request
+        // HR Email Template
+        var subjectForHr = "Reimbursement Request has been Approved";
+
+        var msgBodyForHr =
+          "Dear HR,\n\nPlease know that " +
+          transactionDetails.admin_approved_by +
+          " have approved the expense detail(s) and bill(s) submitted along with it for the expense reimbursement of " +
+          transactionDetails.name +
+          " worth ₹ " +
+          transactionDetails.paid_amount +
+          ".\n\nRegards,\n" +
+          transaction.admin_approved_by;
+
+        var hrMailOptions = {
+          from: "hr@inferenz.ai",
+          to: "internal.hr@inferenz.ai",
+          cc: "internal.hr@inferenz.ai",
+          subject: subjectForHr,
+          text: msgBodyForHr,
+        };
+
+        mailTransporter.sendMail(hrMailOptions, function (error, info) {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log("HR Email Sent: " + info.response);
+          }
+        });
+
+        // Candidate Email Template
+        subject = "Payment has been made for your Reimbursement Request";
+
+        msgBody =
+          "Dear " +
+          transactionDetails.name +
+          "," +
+          "\n\nPlease know that your expense reimbursement request has been processed for " +
+          transactionDetails.purpose_of_expenditure +
+          " and payment of ₹ " +
+          transactionDetails.paid_amount +
+          " has been made towards it. It will be credited to your account within 3 to 4 working days. Once you receive it, you are requested to confirm at your end.\n\nThanks,\n" +
+          transactionDetails.admin_approved_by;
+
+        userEmail = transactionDetails.email;
+
+        var candidateMailOptions = {
+          from: "hr@inferenz.ai",
+          to: userEmail,
+          cc: "internal.hr@inferenz.ai",
+          subject: subject,
+          text: msgBody,
+        };
+
+        mailTransporter.sendMail(candidateMailOptions, function (error, info) {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log("Candidate Email Sent: " + info.response);
+          }
+        });
+
+        if (i + 1 == transactionIDs.length) {
+          return res.status(200).json({
+            status: true,
+            code: 200,
+            message: "Bulk reimbursement status updated succesfully.",
+          });
+        }
+      }
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      status: false,
+      code: 500,
+      message: "Internal server error occured!!",
+    });
+  }
+};
+
 // to delete request
 const deleteRequest = async (req, res) => {
   try {
@@ -1226,5 +1396,6 @@ module.exports = {
   updateRequest,
   updateStatusByHR,
   updateStatusByAdmin,
+  updateBulkRequestsByAdmin,
   deleteRequest,
 };

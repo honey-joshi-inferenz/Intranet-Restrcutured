@@ -9,12 +9,20 @@ import DatePicker from "react-multi-date-picker";
 import DatePanel from "react-multi-date-picker/plugins/date_panel";
 import { InsertInvitation } from "@mui/icons-material";
 import { Button } from "@mui/material";
+import { Replay } from "@mui/icons-material";
 
 export const GenericFilters = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  const { values, handleChange, handleDateChange } =
-    useContext(AnalyticsContext);
+  const {
+    values,
+    setValues,
+    rangeDates,
+    setRangeDates,
+    setDurations,
+    handleChange,
+    handleDateChange,
+  } = useContext(AnalyticsContext);
 
   const [hrStatus, setHrStatus] = useState([]);
   const [finalStatus, setFinalStatus] = useState([]);
@@ -200,6 +208,7 @@ export const GenericFilters = () => {
             range
             rangeHover
             plugins={[<DatePanel />]}
+            value={rangeDates}
             onChange={handleDateChange}
             render={(value, openCalendar) => {
               return (
@@ -214,6 +223,32 @@ export const GenericFilters = () => {
               );
             }}
           />
+          <Button
+            variant="contained"
+            className="headerButton ms-2"
+            sx={{ width: "38px" }}
+            onClick={() => {
+              setValues({
+                status_hr: "",
+                interview_round: "",
+                final_status: "",
+                owner_name: "",
+                resume_source: "",
+              });
+              setRangeDates([]);
+              setDurations({
+                owner: 0,
+                position: 0,
+                monthly: 0,
+                resumeSource: 0,
+                hrStatus: 0,
+                interviewRound: 0,
+                finalStatus: 0,
+              });
+            }}
+          >
+            <Replay />
+          </Button>
         </div>
       </div>
     </div>

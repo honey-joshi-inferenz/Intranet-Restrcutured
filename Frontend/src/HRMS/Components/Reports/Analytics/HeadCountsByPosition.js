@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,9 +9,6 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import FormControl from "@mui/material/FormControl";
-import { MenuItem, Select } from "@mui/material";
-import { AnalyticsContext } from "../../../../Context/CreateContext";
 
 ChartJS.register(
   CategoryScale,
@@ -23,8 +20,6 @@ ChartJS.register(
 );
 
 export const HeadCountsByPosition = ({ chartData }) => {
-  const { durations, handleDuration } = useContext(AnalyticsContext);
-
   const options = {
     indexAxis: "y",
     elements: {
@@ -38,10 +33,6 @@ export const HeadCountsByPosition = ({ chartData }) => {
         position: "top",
         display: false,
       },
-      // title: {
-      //   display: true,
-      //   text: "Headcount by Position",
-      // },
     },
   };
 
@@ -63,21 +54,6 @@ export const HeadCountsByPosition = ({ chartData }) => {
         <span className="fw-bold text-muted " style={{ fontSize: "13px" }}>
           Headcounts by Position
         </span>
-        <FormControl variant="standard">
-          <Select
-            name="position"
-            value={durations.position}
-            onChange={handleDuration}
-          >
-            <MenuItem value={0} selected>
-              All
-            </MenuItem>
-            <MenuItem value={7}>7 days</MenuItem>
-            <MenuItem value={30}>30 days</MenuItem>
-            <MenuItem value={60}>60 days</MenuItem>
-            <MenuItem value={90}>90 days</MenuItem>
-          </Select>
-        </FormControl>
       </div>
       <Bar options={options} data={data} />
     </div>

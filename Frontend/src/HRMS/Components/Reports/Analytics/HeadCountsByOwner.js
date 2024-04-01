@@ -1,15 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
-import FormControl from "@mui/material/FormControl";
-import { MenuItem, Select } from "@mui/material";
-import { AnalyticsContext } from "../../../../Context/CreateContext";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const HeadCountsByOwner = ({ chartData }) => {
-  const { durations, handleDuration } = useContext(AnalyticsContext);
-
   const options = {
     responsive: true,
     plugins: {
@@ -64,21 +59,6 @@ export const HeadCountsByOwner = ({ chartData }) => {
         <span className="fw-bold text-muted " style={{ fontSize: "13px" }}>
           Headcounts by Owner
         </span>
-        <FormControl variant="standard">
-          <Select
-            name="owner"
-            value={durations.owner}
-            onChange={handleDuration}
-          >
-            <MenuItem value={0} selected>
-              All
-            </MenuItem>
-            <MenuItem value={7}>7 days</MenuItem>
-            <MenuItem value={30}>30 days</MenuItem>
-            <MenuItem value={60}>60 days</MenuItem>
-            <MenuItem value={90}>90 days</MenuItem>
-          </Select>
-        </FormControl>
       </div>
       <Pie data={data} options={options} />
     </div>

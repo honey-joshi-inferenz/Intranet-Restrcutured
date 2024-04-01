@@ -6,7 +6,7 @@ import { RiSearch2Line } from "react-icons/ri";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { HRRequestsGrid } from "../../../Components/Reimbursement/HRRequestsGrid";
+import { HRRequestsGrid } from "../../../Components/HR-Reimbursement/HRRequestsGrid";
 import DatePicker from "react-multi-date-picker";
 import DatePanel from "react-multi-date-picker/plugins/date_panel";
 import { InsertInvitation } from "@mui/icons-material";
@@ -150,7 +150,11 @@ export const HRHome = () => {
         ? "Pending"
         : moment(new Date(row.hr_approved_date)).format("DD/MM/YYYY"),
     date_of_expense: moment(new Date(row.date_of_expense)).format("DD/MM/YYYY"),
-    paid_amount: "₹ " + row.paid_amount,
+    paid_amount:
+      "₹ " +
+      Number(row.paid_amount).toLocaleString(undefined, {
+        maximumFractionDigits: 2,
+      }),
   }));
 
   return (

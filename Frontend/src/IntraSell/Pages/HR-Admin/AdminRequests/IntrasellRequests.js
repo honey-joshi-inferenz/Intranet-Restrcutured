@@ -148,7 +148,11 @@ export const IntrasellRequests = () => {
         : "",
     is_sold: row.is_sold === true ? "Yes" : row.is_sold === false ? "No" : "",
     created_date: moment(new Date(row.created_date)).format("DD/MM/YYYY"),
-    product_price: "₹ " + row.product_price,
+    product_price:
+      "₹ " +
+      Number(row.product_price).toLocaleString(undefined, {
+        maximumFractionDigits: 2,
+      }),
   }));
 
   return (

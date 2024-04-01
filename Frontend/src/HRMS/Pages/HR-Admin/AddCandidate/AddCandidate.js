@@ -137,23 +137,6 @@ export const AddCandidate = () => {
       };
 
       const formData = new FormData();
-      // formData.append("candidate_name", values.name);
-      // formData.append("email", values.email);
-      // formData.append("contact", Phone);
-      // formData.append(
-      //   "resume_source",
-      //   values.resumeSource === "Others"
-      //     ? values.otherResumeSource
-      //     : values.resumeSource
-      // );
-      // formData.append("designation", values.position);
-      // formData.append("relevant_it_experience", values.experience);
-      // formData.append("current_organisation", values.currentOrganization);
-      // formData.append("current_location", values.currentLocation);
-      // formData.append("permanent_place", values.permanentLocation);
-      // formData.append("notice_period", values.noticePeriod);
-      // formData.append("reason_for_job_change", values.reasonOfJobChange);
-      // formData.append("candidate_linkedin", values.linkedin);
       formData.append("data", JSON.stringify(bodyData));
       formData.append("candidate_resume", file);
 

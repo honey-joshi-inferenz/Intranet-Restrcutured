@@ -11,14 +11,16 @@ export const AnalyticsProvider = ({ children }) => {
   });
   const [rangeDates, setRangeDates] = useState([]);
   const [durations, setDurations] = useState({
-    owner: 0,
-    position: 0,
     monthly: 0,
-    resumeSource: 0,
-    hrStatus: 0,
-    interviewRound: 0,
-    finalStatus: 0,
   });
+  const [filter, setFilter] = useState({
+    hrStatus: "",
+    finalStatus: "",
+    interviewRound: "",
+    assignedOwner: "",
+    resumeSource: "",
+  });
+  const [reportDates, setReportDates] = useState([]);
 
   let name, value;
   const handleChange = (e) => {
@@ -26,6 +28,7 @@ export const AnalyticsProvider = ({ children }) => {
     value = e.target.value;
 
     setValues({ ...values, [name]: value });
+    setFilter({ ...filter, [name]: value });
   };
 
   const handleDuration = (e) => {
@@ -35,6 +38,10 @@ export const AnalyticsProvider = ({ children }) => {
 
   const handleDateChange = (dates) => {
     setRangeDates(dates);
+  };
+
+  const handleReportsDateChange = (dates) => {
+    setReportDates(dates);
   };
 
   return (
@@ -49,6 +56,11 @@ export const AnalyticsProvider = ({ children }) => {
         durations,
         setDurations,
         handleDuration,
+        filter,
+        setFilter,
+        reportDates,
+        setReportDates,
+        handleReportsDateChange,
       }}
     >
       {children}

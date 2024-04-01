@@ -145,9 +145,12 @@ export const ReimburseDashboard = () => {
                     <span>{totalData?.count} Bills Received Total</span>
                     <h4>
                       ₹
-                      {totalData?.total_amount?.toLocaleString(undefined, {
-                        maximumFractionDigits: 2,
-                      })}
+                      {Number(totalData?.total_amount)?.toLocaleString(
+                        undefined,
+                        {
+                          maximumFractionDigits: 2,
+                        }
+                      )}
                     </h4>
                   </div>
                 </div>
@@ -161,9 +164,12 @@ export const ReimburseDashboard = () => {
                     <span>{approvedData?.count} Bills Pending For</span>
                     <h4>
                       ₹
-                      {approvedData?.total_amount?.toLocaleString(undefined, {
-                        maximumFractionDigits: 2,
-                      })}
+                      {Number(approvedData?.total_amount)?.toLocaleString(
+                        undefined,
+                        {
+                          maximumFractionDigits: 2,
+                        }
+                      )}
                     </h4>
                   </div>
                 </div>
@@ -177,9 +183,12 @@ export const ReimburseDashboard = () => {
                     <span>{pendingData?.count} Bills Approved For</span>
                     <h4>
                       ₹
-                      {pendingData?.total_amount?.toLocaleString(undefined, {
-                        maximumFractionDigits: 2,
-                      })}
+                      {Number(pendingData?.total_amount)?.toLocaleString(
+                        undefined,
+                        {
+                          maximumFractionDigits: 2,
+                        }
+                      )}
                     </h4>
                   </div>
                 </div>
@@ -193,9 +202,12 @@ export const ReimburseDashboard = () => {
                     <span>{rejectedData?.count} Bills Rejected For</span>
                     <h4>
                       ₹
-                      {rejectedData?.total_amount?.toLocaleString(undefined, {
-                        maximumFractionDigits: 2,
-                      })}
+                      {Number(rejectedData?.total_amount)?.toLocaleString(
+                        undefined,
+                        {
+                          maximumFractionDigits: 2,
+                        }
+                      )}
                     </h4>
                   </div>
                 </div>

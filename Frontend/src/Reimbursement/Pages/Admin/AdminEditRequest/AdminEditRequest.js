@@ -14,7 +14,7 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import { Button } from "@mui/material";
-import { AdminEditModal } from "../../../Components/Reimbursement/AdminEditModal";
+import { AdminEditModal } from "../../../Components/Admin-Reimbursement/AdminEditModal";
 import axios from "axios";
 import { BASE_URL } from "../../../../Config/BaseUrl";
 import moment from "moment";

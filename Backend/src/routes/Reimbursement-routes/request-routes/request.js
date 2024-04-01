@@ -88,7 +88,41 @@ router.put(
 );
 
 router.put(
+  "/updateBulkRequestsByAdmin",
+  [
+    check("transactionIDs")
+      .custom((value, { req }) => {
+        var transactionIDs = req.body.transactionIDs;
+        if (
+          typeof transactionIDs === "object" &&
+          transactionIDs &&
+          Array.isArray(transactionIDs) &&
+          transactionIDs.length > 0
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      })
+      .withMessage("Atleast one transactionID is required!"),
+    check("admin_approved_by")
+      .notEmpty()
+      .withMessage("Approver name is required!"),
+  ],
+  // auth.isLoggedIn,
+  requestControllers.updateBulkRequestsByAdmin
+);
+
+router.put(
   "/updateRequest",
+  invoiceUpload.single("invoice"),
+  check("transaction_id").notEmpty().withMessage("Request id is required!"),
+  auth.isLoggedIn,
+  requestControllers.updateRequest
+);
+
+router.put(
+  "/updateBulkRequests",
   invoiceUpload.single("invoice"),
   check("transaction_id").notEmpty().withMessage("Request id is required!"),
   auth.isLoggedIn,

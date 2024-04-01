@@ -74,7 +74,12 @@ export const RequestsGrid = () => {
                 <TableCell>{row.userName}</TableCell>
                 <TableCell align="right">{row.product_name}</TableCell>
                 <TableCell align="right">{row.categoryName}</TableCell>
-                <TableCell align="right">₹ {row.product_price}</TableCell>
+                <TableCell align="right">
+                  ₹
+                  {Number(row.product_price)?.toLocaleString(undefined, {
+                    maximumFractionDigits: 2,
+                  })}
+                </TableCell>
                 <TableCell align="right">
                   {moment(new Date(row.created_date)).format("DD-MM-YYYY")}
                 </TableCell>

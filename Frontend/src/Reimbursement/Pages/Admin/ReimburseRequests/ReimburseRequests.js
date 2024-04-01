@@ -14,7 +14,7 @@ import DatePanel from "react-multi-date-picker/plugins/date_panel";
 import { InsertInvitation } from "@mui/icons-material";
 import { MdOutlineFileUpload } from "react-icons/md";
 import { Replay } from "@mui/icons-material";
-import { AdminRequestGrid } from "../../../Components/Reimbursement/AdminRequestGrid";
+import { AdminRequestGrid } from "../../../Components/Admin-Reimbursement/AdminRequestGrid";
 import axios from "axios";
 import { useEffect } from "react";
 import { BASE_URL } from "../../../../Config/BaseUrl";
@@ -28,15 +28,19 @@ export const ReimburseRequests = () => {
   const navigate = useNavigate();
   const today = new Date().toISOString().split("T")[0];
   const token = localStorage.getItem("token");
+  const userName = localStorage.getItem("name");
 
   const { reimbursenavVisible } = useContext(SidebarContext);
   const [filter, setFilter] = useState({ search: "", status: "" });
   const [rangeDates, setRangeDates] = useState([]);
   const [data, setData] = useState([]);
   const [filterData, setFilterData] = useState([]);
+  const [selectedRows, setSelectedRows] = useState([]);
   const [message, setMessage] = useState("");
   const [errorMsg, setErrorMsg] = useState(false);
   const [snackbar, setSnackbar] = useState(false);
+
+  console.log(selectedRows);
 
   const handleSnackbar = () => setSnackbar(false);
 
@@ -86,6 +90,42 @@ export const ReimburseRequests = () => {
     getData();
     // eslint-disable-next-line
   }, []);
+
+  const updateStatus = async () => {
+    try {
+      await axios
+        .put(BASE_URL + "reimbursement/request/updateBulkRequestsByAdmin", {
+          transactionIDs: selectedRows,
+          admin_approved_by: userName,
+        })
+        .then((res) => {
+          setSnackbar(true);
+          setErrorMsg(false);
+          setMessage("Status updated succesfully.");
+          setSelectedRows([]);
+        })
+        .catch((err) => {
+          setSnackbar(true);
+          setErrorMsg(true);
+          if (err.message) {
+            setMessage(err.message);
+          }
+          if (err.response.data) {
+            setMessage(err.response.data.message);
+          }
+          if (err.response.status === 401) {
+            setMessage("Your session has been expired.");
+
+            setTimeout(() => {
+              navigate("/adms");
+              localStorage.clear();
+            }, 2000);
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   function escapeRegExp(string) {
     return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -154,7 +194,11 @@ export const ReimburseRequests = () => {
         ? "Pending"
         : moment(new Date(row.hr_approved_date)).format("DD/MM/YYYY"),
     date_of_expense: moment(new Date(row.date_of_expense)).format("DD/MM/YYYY"),
-    paid_amount: "₹ " + row.paid_amount,
+    paid_amount:
+      "₹ " +
+      Number(row.paid_amount).toLocaleString(undefined, {
+        maximumFractionDigits: 2,
+      }),
   }));
 
   return (
@@ -233,6 +277,7 @@ export const ReimburseRequests = () => {
                             <MenuItem value="Rejected">Rejected</MenuItem>
                           </Select>
                         </FormControl>
+
                         <DatePicker
                           range
                           rangeHover
@@ -284,8 +329,22 @@ export const ReimburseRequests = () => {
                       </div>
                     </div>
                   </div>
+                  {selectedRows?.length > 0 && (
+                    <div className="d-flex justify-content-end ">
+                      <Button
+                        variant="outlined"
+                        className="headerButton ms-3"
+                        onClick={updateStatus}
+                      >
+                        Update Status to Payment Done
+                      </Button>
+                    </div>
+                  )}
                   <div className="viewRequestTable mt-2">
-                    <AdminRequestGrid data={filterData} />
+                    <AdminRequestGrid
+                      data={filterData}
+                      setSelectedRows={setSelectedRows}
+                    />
                   </div>
                 </div>
               ) : (

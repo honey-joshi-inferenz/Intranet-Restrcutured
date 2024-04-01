@@ -1,6 +1,4 @@
-import React, { useContext } from "react";
-import FormControl from "@mui/material/FormControl";
-import { MenuItem, Select } from "@mui/material";
+import React from "react";
 import {
   Chart as ChartJS,
   RadialLinearScale,
@@ -11,7 +9,6 @@ import {
   Legend,
 } from "chart.js";
 import { Radar } from "react-chartjs-2";
-import { AnalyticsContext } from "../../../../Context/CreateContext";
 
 ChartJS.register(
   RadialLinearScale,
@@ -23,19 +20,12 @@ ChartJS.register(
 );
 
 export const HeadCountsBySource = ({ chartData }) => {
-  const { durations, handleDuration } = useContext(AnalyticsContext);
-
   const options = {
     responsive: true,
     plugins: {
       legend: {
         position: "top",
       },
-
-      // title: {
-      //   display: true,
-      //   text: "Headcount by Resume Source",
-      // },
     },
   };
 
@@ -57,21 +47,6 @@ export const HeadCountsBySource = ({ chartData }) => {
         <span className="fw-bold text-muted " style={{ fontSize: "13px" }}>
           Headcounts by Resume Source
         </span>
-        <FormControl variant="standard">
-          <Select
-            name="resumeSource"
-            value={durations.resumeSource}
-            onChange={handleDuration}
-          >
-            <MenuItem value={0} selected>
-              All
-            </MenuItem>
-            <MenuItem value={7}>7 days</MenuItem>
-            <MenuItem value={30}>30 days</MenuItem>
-            <MenuItem value={60}>60 days</MenuItem>
-            <MenuItem value={90}>90 days</MenuItem>
-          </Select>
-        </FormControl>
       </div>
       <Radar data={data} options={options} />
     </div>

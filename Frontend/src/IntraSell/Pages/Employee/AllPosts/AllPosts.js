@@ -5,7 +5,6 @@ import intraSell from "../../../../Assets/Logo/intrasell.png";
 import { Button } from "@mui/material";
 import { GrFormNextLink } from "react-icons/gr";
 import Avatar from "@mui/material/Avatar";
-import { Call } from "@mui/icons-material";
 import { AddPost } from "../../../Components/MyPosts/AddPost/AddPost";
 import { Api } from "../../../../Config/API";
 import Alert from "@mui/material/Alert";
@@ -114,10 +113,20 @@ export const AllPosts = () => {
                     <header className="mt-3">Product Description</header>
                     <p className="mt-2 ">{data[0].product_description}</p>
                     <div className="mt-5 d-flex justify-content-md-between flex-md-row flex-column ">
-                      <h3>₹ {data[0].product_price}</h3>
-                      <Button endIcon={<Call />} className="allPostCallBtn">
-                        Call for More details
-                      </Button>
+                      <h3>
+                        ₹
+                        {Number(data[0].product_price).toLocaleString(
+                          undefined,
+                          {
+                            maximumFractionDigits: 2,
+                          }
+                        )}
+                      </h3>
+                      {data[0].is_sold === true && (
+                        <Button variant="outlined" color="error">
+                          Sold Out
+                        </Button>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -169,13 +178,20 @@ export const AllPosts = () => {
                           <header className="mt-3">Product Description</header>
                           <p className="mt-2 ">{i.product_description}</p>
                           <div className="mt-5 d-flex justify-content-md-between flex-md-row flex-column ">
-                            <h3>₹ {i.product_price}</h3>
-                            <Button
-                              endIcon={<Call />}
-                              className="allPostCallBtn"
-                            >
-                              Call for More details
-                            </Button>
+                            <h3>
+                              ₹
+                              {Number(i.product_price).toLocaleString(
+                                undefined,
+                                {
+                                  maximumFractionDigits: 2,
+                                }
+                              )}
+                            </h3>
+                            {i.is_sold === true && (
+                              <Button variant="outlined" color="error">
+                                Sold Out
+                              </Button>
+                            )}
                           </div>
                         </div>
                       </div>

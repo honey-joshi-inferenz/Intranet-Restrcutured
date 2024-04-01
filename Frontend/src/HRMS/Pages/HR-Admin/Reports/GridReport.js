@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import { Replay } from "@mui/icons-material";
@@ -18,13 +18,21 @@ import { CSVLink } from "react-csv";
 import moment from "moment";
 import Alert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
+import { AnalyticsContext } from "../../../../Context/CreateContext";
 
 export const GridReport = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const {
+    filter,
+    setFilter,
+    reportDates,
+    setReportDates,
+    handleReportsDateChange,
+    handleChange,
+  } = useContext(AnalyticsContext);
 
   const today = new Date().toISOString().split("T")[0];
-  const [rangeDates, setRangeDates] = useState([]);
   const [data, setData] = useState([]);
   const [filterData, setFilterData] = useState([]);
   const [hrStatus, setHrStatus] = useState([]);
@@ -39,26 +47,6 @@ export const GridReport = () => {
   const [snackbar, setSnackbar] = useState(false);
 
   const handleSnackbar = () => setSnackbar(false);
-
-  const [filter, setFilter] = useState({
-    hrStatus: "",
-    finalStatus: "",
-    interviewRound: "",
-    assignedOwner: "",
-    resumeSource: "",
-  });
-
-  let name, value;
-  const handleChange = (e) => {
-    name = e.target.name;
-    value = e.target.value;
-
-    setFilter({ ...filter, [name]: value });
-  };
-
-  const handleDateChange = (dates) => {
-    setRangeDates(dates);
-  };
 
   const handleSelectChange = (selectedOptions) => {
     setSelectedColumns(selectedOptions.map((option) => option.value));
@@ -167,8 +155,8 @@ export const GridReport = () => {
   }, []);
 
   useEffect(() => {
-    const fromDate = rangeDates[0] ? new Date(rangeDates[0]) : null;
-    const toDate = rangeDates[1] ? new Date(rangeDates[1]) : null;
+    const fromDate = reportDates[0] ? new Date(reportDates[0]) : null;
+    const toDate = reportDates[1] ? new Date(reportDates[1]) : null;
     fromDate?.setHours(0, 0, 0, 0);
 
     const result = data?.filter((item) => {
@@ -196,7 +184,7 @@ export const GridReport = () => {
     });
     setFilterData(result);
     // eslint-disable-next-line
-  }, [rangeDates, filter]);
+  }, [reportDates, filter]);
 
   const headers = [
     { label: "Name", key: "candidate_name" },
@@ -294,6 +282,7 @@ export const GridReport = () => {
                     <MenuItem value="" disabled>
                       HR Status
                     </MenuItem>
+                    <MenuItem value="Pending">Pending</MenuItem>
                     {hrStatus?.length > 0 &&
                       hrStatus.map((i, index) => {
                         return (
@@ -316,6 +305,8 @@ export const GridReport = () => {
                     <MenuItem value="" disabled>
                       Interview Round
                     </MenuItem>
+                    <MenuItem value="Applied">Applied</MenuItem>
+                    <MenuItem value="Manual Applied">Manual Applied</MenuItem>
                     {interviewRounds?.length > 0 &&
                       interviewRounds.map((i, index) => {
                         return (
@@ -340,6 +331,7 @@ export const GridReport = () => {
                     <MenuItem value="" disabled>
                       Final Status
                     </MenuItem>
+                    <MenuItem value="Pending">Pending</MenuItem>
                     {finalStatus?.length > 0 &&
                       finalStatus.map((i, index) => {
                         return (
@@ -402,7 +394,8 @@ export const GridReport = () => {
                 range
                 rangeHover
                 plugins={[<DatePanel />]}
-                onChange={handleDateChange}
+                value={reportDates}
+                onChange={handleReportsDateChange}
                 render={(value, openCalendar) => {
                   return (
                     <Button
@@ -448,6 +441,7 @@ export const GridReport = () => {
                     resumeSource: "",
                   });
                   setSelectedColumns([]);
+                  setReportDates([]);
                 }}
               >
                 <Replay />

@@ -227,6 +227,7 @@ export const CandidateDetails = () => {
         other_offer_on_hand: filledData.other_offer_on_hand,
         other_offer_amount: filledData.other_offer_amount,
         final_status: filledData.final_status,
+        offered_date: filledData.offered_date,
         joinig_date: filledData.joinig_date,
         template_no: filledData.template_no,
         employee_update: filledData.employee_update,
@@ -241,52 +242,6 @@ export const CandidateDetails = () => {
       };
 
       const formData = new FormData();
-      // formData.append("uuid", data.uuid);
-      // formData.append("email", data.email);
-      // formData.append("candidate_name", data.candidate_name);
-      // formData.append("contact", phone);
-      // formData.append("resume_source", data.resume_source);
-      // formData.append("referred_by", data.referred_by);
-      // formData.append("referral_email", data.referral_email);
-      // formData.append("current_location", data.current_location);
-      // formData.append("permanent_place", data.permanent_place);
-      // formData.append("designation", data.designation);
-      // formData.append("relevant_it_experience", data.relevant_it_experience);
-      // formData.append("current_organisation", data.current_organisation);
-      // formData.append("current_ctc", data.current_ctc);
-      // formData.append("expected_ctc", data.expected_ctc);
-      // formData.append("negotiated_ctc", data.negotiated_ctc);
-      // formData.append("notice_period", data.notice_period);
-      // formData.append("reason_for_job_change", data.reason_for_job_change);
-      // formData.append("reference1_name", data.reference1_name);
-      // formData.append("reference1_contact", firstPhone);
-      // formData.append("reference2_name", data.reference2_name);
-      // formData.append("reference2_contact", secondPhone);
-      // formData.append("candidate_linkedin", data.candidate_linkedin);
-      // formData.append("status_hr", data.status_hr);
-      // formData.append("interviewer_name", data.interviewer_name);
-      // formData.append("interview_round", data.interview_round);
-      // formData.append("interview_date", data.interview_date);
-      // formData.append("interview_time", data.interview_time);
-      // formData.append("eligible_for_next_round", data.eligible_for_next_round);
-      // formData.append("interview_feedback", data.interview_feedback);
-      // formData.append("remarks_hr", data.remarks_hr);
-      // formData.append("relocate_to_ahmedabad", data.relocate_to_ahmedabad);
-      // formData.append("relocate_location", data.relocate_location);
-      // formData.append("other_offer_on_hand", data.other_offer_on_hand);
-      // formData.append("final_status", data.final_status);
-      // formData.append("joinig_date", data.joinig_date);
-      // formData.append("template_no", data.template_no);
-      // formData.append("employee_update", data.employee_update);
-      // formData.append("other_reason", data.other_reason);
-      // formData.append("offered_salary", data.offered_salary);
-      // formData.append("offered_bonus", data.offered_bonus);
-      // formData.append("final_remarks", data.final_remarks);
-      // formData.append("owner_name", data.owner_name);
-      // formData.append("sendRejectionEmail", sendRejectionEmail);
-      // formData.append("modifierEmail", user);
-      // formData.append("applied_date", data.applied_date);
-
       formData.append("data", JSON.stringify(bodyData));
       formData.append("candidate_resume", file !== null ? file : null);
 

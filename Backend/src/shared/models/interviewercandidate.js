@@ -146,6 +146,9 @@ module.exports = (sequelize, DataTypes) => {
       other_reason: {
         type: DataTypes.TEXT,
       },
+      offered_date: {
+        type: DataTypes.TEXT,
+      },
       joinig_date: {
         type: DataTypes.TEXT,
       },

@@ -575,6 +575,10 @@ textarea.form-control {
   color: #4e5f77;
   font-weight: 600;
 }
+.MuiAccordion-root {
+  box-shadow: none !important ;
+  border-radius: 5px !important;
+}
 
 @media only screen and (max-width: 768px) {
   .page-with-navbar {

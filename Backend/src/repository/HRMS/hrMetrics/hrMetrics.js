@@ -6,14 +6,13 @@ const moment = require("moment");
 const getCountsByOwner = async (req, res) => {
   try {
     var today = new Date().toISOString().split("T")[0];
-    const { duration, values, dateRange } = req.query;
+    const { values, dateRange } = req.query;
     const parsedValues = JSON.parse(values);
     const parsedDateRange = JSON.parse(dateRange);
 
     // Convert timestamps to Date objects
     const startDate = new Date(parsedDateRange[0]);
     const endDate = new Date(parsedDateRange[1]);
-    const appliedDate = moment().subtract(duration, "days").toDate();
 
     let whereConditions = {
       role: { [Op.eq]: "HR" },
@@ -51,11 +50,8 @@ const getCountsByOwner = async (req, res) => {
         "name",
         [
           sequelize.literal(
-            `(SELECT COUNT(*) FROM interviewer_candidate ic WHERE ic.owner_name = users.email AND ic.visible = true ${
-              duration != "0"
-                ? ` AND ic.applied_date >= '${appliedDate.toISOString()}' AND ic.applied_date <= '${today}'`
-                : ""
-            }${
+            `(SELECT COUNT(*) FROM interviewer_candidate ic WHERE ic.owner_name = users.email AND ic.visible = true 
+            ${
               dateRange.length > 0 && !isNaN(startDate) && !isNaN(endDate)
                 ? `AND ic.applied_date >= '${startDate.toISOString()}' AND ic.applied_date <= '${endDate.toISOString()}'`
                 : ""
@@ -84,12 +80,14 @@ const getCountsByOwner = async (req, res) => {
 const getCountsByPosition = async (req, res) => {
   try {
     var today = new Date().toISOString().split("T")[0];
-    const { duration, values, dateRange } = req.query;
+    const { values, dateRange } = req.query;
     const parsedValues = JSON.parse(values);
     const parsedDateRange = JSON.parse(dateRange);
 
     const startDate = new Date(parsedDateRange[0]);
     const endDate = new Date(parsedDateRange[1]);
+
+    console.log(startDate, endDate, "--------------------");
 
     const whereConditions = {
       visible: true,
@@ -98,11 +96,6 @@ const getCountsByPosition = async (req, res) => {
         { designation: { [Op.not]: "" } },
       ],
     };
-
-    if (duration !== "0") {
-      const appliedDate = moment().subtract(duration, "days").toDate();
-      whereConditions.applied_date = { [Op.between]: [appliedDate, today] };
-    }
 
     if (dateRange.length > 0 && !isNaN(startDate) && !isNaN(endDate)) {
       whereConditions.applied_date = { [Op.between]: [startDate, endDate] };
@@ -189,7 +182,7 @@ const getUpcomingJoiner = async (req, res) => {
 const getCountsByResumeSource = async (req, res) => {
   try {
     var today = new Date().toISOString().split("T")[0];
-    const { duration, values, dateRange } = req.query;
+    const { values, dateRange } = req.query;
     const parsedValues = JSON.parse(values);
     const parsedDateRange = JSON.parse(dateRange);
 
@@ -203,11 +196,6 @@ const getCountsByResumeSource = async (req, res) => {
         { resume_source: { [Op.not]: "" } },
       ],
     };
-
-    if (duration !== "0") {
-      const appliedDate = moment().subtract(duration, "days").toDate();
-      whereConditions.applied_date = { [Op.between]: [appliedDate, today] };
-    }
 
     if (dateRange.length > 0 && !isNaN(startDate) && !isNaN(endDate)) {
       whereConditions.applied_date = { [Op.between]: [startDate, endDate] };
@@ -344,7 +332,7 @@ const getCountByMonth = async (req, res) => {
 const getCountsByHrStatus = async (req, res) => {
   try {
     var today = new Date().toISOString().split("T")[0];
-    const { duration, values, dateRange } = req.query;
+    const { values, dateRange } = req.query;
     const parsedValues = JSON.parse(values);
     const parsedDateRange = JSON.parse(dateRange);
 
@@ -358,11 +346,6 @@ const getCountsByHrStatus = async (req, res) => {
         { status_hr: { [Op.not]: "" } },
       ],
     };
-
-    if (duration !== "0") {
-      const appliedDate = moment().subtract(duration, "days").toDate();
-      whereConditions.applied_date = { [Op.between]: [appliedDate, today] };
-    }
 
     if (dateRange.length > 0 && !isNaN(startDate) && !isNaN(endDate)) {
       whereConditions.applied_date = { [Op.between]: [startDate, endDate] };
@@ -412,7 +395,7 @@ const getCountsByHrStatus = async (req, res) => {
 const getCountsByFinalStatus = async (req, res) => {
   try {
     var today = new Date().toISOString().split("T")[0];
-    const { duration, values, dateRange } = req.query;
+    const { values, dateRange } = req.query;
     const parsedValues = JSON.parse(values);
     const parsedDateRange = JSON.parse(dateRange);
 
@@ -426,11 +409,6 @@ const getCountsByFinalStatus = async (req, res) => {
         { final_status: { [Op.not]: "" } },
       ],
     };
-
-    if (duration !== "0") {
-      const appliedDate = moment().subtract(duration, "days").toDate();
-      whereConditions.applied_date = { [Op.between]: [appliedDate, today] };
-    }
 
     if (dateRange.length > 0 && !isNaN(startDate) && !isNaN(endDate)) {
       whereConditions.applied_date = { [Op.between]: [startDate, endDate] };
@@ -480,7 +458,7 @@ const getCountsByFinalStatus = async (req, res) => {
 const getCountsByInterviewRounds = async (req, res) => {
   try {
     var today = new Date().toISOString().split("T")[0];
-    const { duration, values, dateRange } = req.query;
+    const { values, dateRange } = req.query;
     const parsedValues = JSON.parse(values);
     const parsedDateRange = JSON.parse(dateRange);
 
@@ -494,11 +472,6 @@ const getCountsByInterviewRounds = async (req, res) => {
         { interview_round: { [Op.not]: "" } },
       ],
     };
-
-    if (duration !== "0") {
-      const appliedDate = moment().subtract(duration, "days").toDate();
-      whereConditions.applied_date = { [Op.between]: [appliedDate, today] };
-    }
 
     if (dateRange.length > 0 && !isNaN(startDate) && !isNaN(endDate)) {
       whereConditions.applied_date = { [Op.between]: [startDate, endDate] };

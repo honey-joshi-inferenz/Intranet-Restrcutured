@@ -41,10 +41,6 @@ export const EveryMonthApplication = ({ chartData }) => {
     plugins: {
       legend: {
         position: "top",
-        // title: {
-        //   display: true,
-        //   text: "Every Month Application",
-        // },
       },
     },
   };

@@ -39,3 +39,10 @@ SET t.account_id = u.id;
 7. product_subcategories
 
 7. product_details
+
+
+
+
+
+INSERT INTO inferenz_intranet.interviewer_candidate(`id`,`uuid`,`email`,`candidate_name`,`contact`,`resume_source`,`designation`,`relevant_it_experience`,`current_ctc`,`expected_ctc`,`negotiated_ctc`,`current_organisation`,`current_location`,`permanent_place`,`notice_period`,`reason_for_job_change`,`relocate_to_ahmedabad`,`relocate_location`,`other_offer_on_hand`,`other_offer_amount`,`candidate_linkedin`,`reference1_name`,`reference1_contact`,`reference2_name`,`reference2_contact`,`remarks_hr`,`status_hr`,`interview_round`,`interviewer_name`,`owner_name`,`interview_date`,`interview_time`,`interview_feedback`,`interview_softSkills`,`eligible_for_next_round`,`final_status`,`template_no`,`other_reason`, `offered_date`,`joinig_date`,`offered_salary`,`offered_bonus`,`final_remarks`,`applied_date`,`applied_month`,`candidate_resume`,`referred_by`,`referral_email`,`modified_by`,`modified_date`)
+SELECT `id`,`uuid`,`email`,`candidate_name`,`contact`,`resume_source`,`designation`,`relevant_it_experience`,`current_ctc`,`expected_ctc`,`negotiated_ctc`,`current_organisation`,`current_location`,`permanent_place`,`notice_period`,`reason_for_job_change`,`relocate_to_ahmedabad`,`relocate_location`,`other_offer_on_hand`,`other_offer_amount`,`candidate_linkedin`,`reference1_name`,`reference1_contact`,`reference2_name`,`reference2_contact`,`remarks_hr`,`status_hr`,`interview_round`,`interviewer_name`,`owner_name`,`interview_date`,`interview_time`,`interview_feedback`,`interview_softSkills`,`eligible_for_next_round`,`final_status`,`template_no`,`other_reason`, null,`joinig_date`,`offered_salary`,`offered_bonus`,`final_remarks`,`applied_date`,`applied_month`,`candidate_resume`,`referred_by`,`referral_email`,`modified_by`,`modified_date`  FROM intranet_backup.interviewer_candidate

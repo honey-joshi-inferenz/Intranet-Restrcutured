@@ -432,7 +432,7 @@ export const Applications = ({ getTableData }) => {
               </div>
             </div>
           ) : (
-            <div className="card w-50 p-5 mt-5 norequestCompo d-flex  align-items-center  justify-content-center flex-column">
+            <div className="card w-100 p-5 mt-5 norequestCompo d-flex  align-items-center  justify-content-center flex-column">
               <span className="fw-bold">Data not found!</span>
               <span
                 className="fw-bold mt-3"

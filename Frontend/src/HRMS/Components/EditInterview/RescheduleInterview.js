@@ -88,6 +88,11 @@ export const RescheduleInterview = ({ setReschedule, data }) => {
               setLoading(false);
               handleCancel();
               setReschedule(false);
+              if (role === "HR" || role === "Admin") {
+                navigate("/recruiter-dashboard");
+              } else {
+                navigate("/recruiter-interviews");
+              }
             }, 2000);
           })
           .catch((err) => {

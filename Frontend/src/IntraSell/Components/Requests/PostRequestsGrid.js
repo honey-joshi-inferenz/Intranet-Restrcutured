@@ -40,7 +40,14 @@ export const PostRequestsGrid = ({ data }) => {
       headerName: "price",
       width: 150,
       renderCell: (row) => {
-        return <span>₹ {row.row.product_price}</span>;
+        return (
+          <span>
+            ₹
+            {Number(row.row.product_price).toLocaleString(undefined, {
+              maximumFractionDigits: 2,
+            })}
+          </span>
+        );
       },
     },
     {

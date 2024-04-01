@@ -130,6 +130,9 @@ module.exports = {
       other_reason: {
         type: Sequelize.TEXT,
       },
+      offered_date: {
+        type: Sequelize.TEXT,
+      },
       joinig_date: {
         type: Sequelize.TEXT,
       },

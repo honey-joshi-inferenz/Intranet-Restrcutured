@@ -12,7 +12,7 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import { useState } from "react";
 import { Button } from "@mui/material";
-import { HREditModal } from "../../../Components/Reimbursement/HREditModal";
+import { HREditModal } from "../../../Components/HR-Reimbursement/HREditModal";
 import axios from "axios";
 import { BASE_URL } from "../../../../Config/BaseUrl";
 import moment from "moment";
